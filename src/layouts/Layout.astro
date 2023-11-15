@@ -1,11 +1,12 @@
 ---
-import AsideMenue
+import AsideMenu from "../components/AsideMenu.astro"
+import { ViewTransitions } from "astro:transitions"
 
 interface Props {
-	title: string;
+  title: string
 }
 
-const { title } = Astro.props;
+const { title } = Astro.props
 ---
 
 <!doctype html>
