@@ -1,22 +1,23 @@
+import { Pause, Play } from "./Player"
+import { usePlayerStore } from '@/store/playerStore'
 
-import { Pause, Play} from "./Player"
-import {usePlayerStore} from "@/store/playerStore"
-
-export function CardPlayButton ({id, size = "small"}) {
+export function CardPlayButton ({ id, size = 'small' }) {
   const {
     currentMusic,
     isPlaying,
     setIsPlaying,
-    setCurrentMusic,
-  } = usePlayerStore( state =>state)
-  const isPlayingPlayList = isPlaying && currentMusic?.playlist.id === id
+    setCurrentMusic
+  } = usePlayerStore(state => state)
+
+  const isPlayingPlaylist = isPlaying && currentMusic?.playlist.id === id
 
   const handleClick = () => {
-    if (isPlayingPlayList) {
+    if (isPlayingPlaylist) {
       setIsPlaying(false)
-return
-  }
-  fetch(`/api/get-info-playlist.json?id=${id}`)
+      return
+    }
+
+    fetch(`/api/get-info-playlist.json?id=${id}`)
       .then(res => res.json())
       .then(data => {
         const { songs, playlist } = data
